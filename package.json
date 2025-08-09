@@ -1,0 +1,80 @@
+{
+  "name": "easy-build-components",
+  "version": "1.0.4",
+  "description": "React components library for FormBuilder and CrudTable with Ant Design",
+  "type": "module",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "files": [
+    "dist",
+    "README.md",
+    ".babelrc.json"
+  ],
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "rollup -c -w",
+    "prepare": "npm run build",
+    "lint": "eslint src --ext .js,.jsx",
+    "lint:fix": "eslint src --ext .js,.jsx --fix",
+    "format": "prettier --write \"src/**/*.{js,jsx}\"",
+    "patch": "npm version patch",
+    "minor": "npm version minor",
+    "major": "npm version major",
+    "publish-only": "npm publish --access=public",
+    "release": "npm run format && npm run lint:fix && npm run build && npm run patch && npm run publish-only",
+    "prepublishOnly": "npm run lint"
+  },
+  "keywords": [
+    "react",
+    "components",
+    "antd",
+    "form-builder",
+    "crud-table",
+    "ui-library"
+  ],
+  "author": "monchai.m",
+  "license": "MIT",
+  "peerDependencies": {
+    "antd": ">=5.0.0",
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.28.0",
+    "@babel/preset-env": "^7.28.0",
+    "@babel/preset-react": "^7.27.1",
+    "@rollup/plugin-babel": "^6.0.4",
+    "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-json": "^6.1.0",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-terser": "^0.4.4",
+    "rollup": "^4.9.1",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "eslint": "^8.57.0",
+    "eslint-plugin-react": "^7.34.0",
+    "prettier": "^3.2.5"
+  },
+  "dependencies": {
+    "@ant-design/icons": "^6.0.0",
+    "axios": "^1.11.0",
+    "crypto-js": "^4.2.0",
+    "dayjs": "^1.11.10",
+    "file-saver": "^2.0.5",
+    "mysql2": "^3.14.3",
+    "papaparse": "^5.5.3",
+    "react-i18next": "^13.5.0",
+    "react-syntax-highlighter": "^15.5.0",
+    "uuid": "^11.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/monchai-m/easy-build-components.git"
+  },
+  "bugs": {
+    "url": "https://github.com/monchai-m/easy-build-components/issues"
+  },
+  "homepage": "https://github.com/monchai-m/easy-build-components#readme",
+  "publishConfig": {
+    "access": "public"
+  }
+}
