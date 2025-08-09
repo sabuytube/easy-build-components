@@ -22,7 +22,7 @@ const FieldOptionsTab = ({
   tables = [],
   columns = [],
   onTableChange,
-  loading = false
+  loading = false,
 }) => {
   const optionsConfig = Form.useWatch('optionsConfig', form);
   const optionsMode = optionsConfig?.mode || 'manual';
