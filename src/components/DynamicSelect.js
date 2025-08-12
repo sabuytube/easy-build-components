@@ -1,45 +1,45 @@
-import React, { useEffect, useState } from 'react';
-import { Select } from 'antd';
-import api from './lib/api';
+import React, {useEffect, useState} from 'react';
+import {Select} from 'antd';
 
-const DynamicSelect = ({ optionsConfig, initialOptions = [], ...props }) => {
-  const [options, setOptions] = useState(initialOptions);
-  const [loading, setLoading] = useState(false);
+const DynamicSelect = ({optionsConfig, initialOptions = [], ...props}) => {
+    const [options, setOptions] = useState(initialOptions);
+    const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    const fetchOptions = async () => {
-      if (
-        optionsConfig &&
-        optionsConfig.table &&
-        optionsConfig.labelField &&
-        optionsConfig.valueField
-      ) {
-        setLoading(true);
-        try {
-          const apiEndpoint =
-            optionsConfig.mode === 'table' ? 'customOptions' : 'options';
-          const res = await api.get(apiEndpoint, {
-            table: optionsConfig.table,
-            labelField: optionsConfig.labelField,
-            valueField: optionsConfig.valueField,
-          });
-          if (res.data && res.success) {
-            setOptions(res.data || []);
-          }
-        } catch (err) {
-          console.error('Failed to load options:', err);
-        } finally {
-          setLoading(false);
-        }
-      } else if (Array.isArray(initialOptions)) {
-        setOptions(initialOptions);
-      }
-    };
+    useEffect(() => {
+        const fetchOptions = async () => {
+            if (
+                optionsConfig &&
+                optionsConfig.table &&
+                optionsConfig.labelField &&
+                optionsConfig.valueField
+            ) {
+                setLoading(true);
+                try {
+                    // const apiEndpoint = optionsConfig.mode === 'table' ? 'customOptions' : 'options';
+                    // const res = await api.get(apiEndpoint, {
+                    //     table: optionsConfig.table,
+                    //     labelField: optionsConfig.labelField,
+                    //     valueField: optionsConfig.valueField,
+                    // });
+                    // if (res.data && res.success) {
+                    //     setOptions(res.data || []);
+                    // }
+                    setOptions(res || []);
 
-    fetchOptions();
-  }, [optionsConfig, initialOptions]);
+                } catch (err) {
+                    console.error('Failed to load options:', err);
+                } finally {
+                    setLoading(false);
+                }
+            } else if (Array.isArray(initialOptions)) {
+                setOptions(initialOptions);
+            }
+        };
 
-  return <Select options={options} loading={loading} {...props} />;
+        fetchOptions();
+    }, [optionsConfig, initialOptions]);
+
+    return <Select options={options} loading={loading} {...props} />;
 };
 
 export default DynamicSelect;
